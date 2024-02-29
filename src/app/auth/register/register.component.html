@@ -1,1 +1,20 @@
-<p>register works!</p>
+<h1>Regístrate en Movies App</h1>
+
+<form [formGroup]="registerForm">
+  <section>
+    <label>E-Mail</label>
+    <input pInputText type="email" formControlName="email">
+  </section>
+  <section>
+    <label>Contraseña</label>
+    <p-password type="password" [feedback]="true" formControlName="password" [toggleMask]="true" ></p-password>
+  </section>
+  <section>
+    <label>Repite la contraseña</label>
+    <p-password type="password" formControlName="confirmPassword" [toggleMask]="true" ></p-password>
+  </section>
+  <div>
+    <button pButton type="button" label="Registrarse"></button>
+    <button pButton type="button" label="Iniciar Sesión" routerLink="/login"></button>
+  </div>
+</form>

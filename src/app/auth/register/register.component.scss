@@ -1,0 +1,29 @@
+h1{
+  text-align: center;
+  font-family: "Poppins", serif;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  label{
+    margin-top: 20px;
+    font-family: "Poppins", serif;
+  }
+  input{
+    width: 278px;
+  }
+  div{
+    width: 200px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  section{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+}

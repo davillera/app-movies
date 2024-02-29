@@ -1,6 +1,23 @@
+<h1>Movies App</h1>
+
 <form [formGroup]="loginForm">
-  <label>E-Mail</label>
-  <input pInputText type="email" formControlName="email">
-  <label>Contraseña</label>
-  <p-password type="password" pPassword formControlName="password" />
+  <section>
+    <label>E-Mail</label>
+    <input pInputText type="email" formControlName="email">
+  </section>
+  <section>
+    <label>Contraseña</label>
+    <p-password type="password" [feedback]="true" formControlName="password" [toggleMask]="true" ></p-password>
+  </section>
+  <div>
+    <button pButton type="button" label="Iniciar Sesión" (click)="login()"></button>
+    <button pButton type="button" label="Registrarse" routerLink="/register"></button>
+  </div>
 </form>
+<hr>
+<div>
+  <img src="assets/icons/icon-google.svg">
+</div>
+
+
+
