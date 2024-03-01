@@ -1,18 +1,20 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+// import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCBWzn03UE29Mu0xhOHMTnlCW1mVrfAjgs",
-  authDomain: "movie-app-c80bc.firebaseapp.com",
-  databaseURL: "https://movie-app-c80bc-default-rtdb.firebaseio.com",
-  projectId: "movie-app-c80bc",
-  storageBucket: "movie-app-c80bc.appspot.com",
-  messagingSenderId: "698072277782",
-  appId: "1:698072277782:web:1e6ac3365d6ff7bb62e637"
-};
+export const environment = {
+  production: false,
+  firebaseConfig :{
+    apiKey: "AIzaSyA7jsH8fzGYPHq9FGr1MIrY5QHelY7dByE",
+    authDomain: "movies-app-3bde2.firebaseapp.com",
+    projectId: "movies-app-3bde2",
+    storageBucket: "movies-app-3bde2.appspot.com",
+    messagingSenderId: "173172836456",
+    appId: "1:173172836456:web:f89ffe214fc6d10db153dd"
+  }
+}
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);

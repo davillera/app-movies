@@ -1,0 +1,25 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+p {
+  color: aliceblue;
+}
+
+main {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 10px;
+  //grid-auto-rows: minmax(25vw, auto);
+  section {
+    width: auto;
+    justify-self: center;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
