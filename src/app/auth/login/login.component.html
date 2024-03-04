@@ -10,13 +10,14 @@
     <p-password type="password" [feedback]="true" formControlName="password" [toggleMask]="true" ></p-password>
   </section>
   <div>
-    <button pButton type="button" label="Iniciar Sesión" (click)="login()"></button>
+    <button pButton type="button" [disabled]="loginForm.invalid" label="Iniciar Sesión" (click)="loginWithEmail()"></button>
     <button pButton type="button" label="Registrarse" routerLink="/register"></button>
   </div>
 </form>
 <hr>
 <div>
-  <img src="assets/icons/icon-google.svg">
+  <img src="assets/icons/icon-google.svg" (click)="logInWithGoogle()">
+  <p>Log In With Google</p>
 </div>
 
 

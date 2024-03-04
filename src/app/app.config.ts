@@ -19,13 +19,12 @@ export const appConfig: ApplicationConfig = {
       BrowserAnimationsModule
     ),
     provideRouter(routes), importProvidersFrom(provideFirebaseApp(() => initializeApp({
-      "projectId": "movie-app-c80bc",
-      "appId": "1:698072277782:web:1e6ac3365d6ff7bb62e637",
-      "databaseURL": "https://movie-app-c80bc-default-rtdb.firebaseio.com",
-      "storageBucket": "movie-app-c80bc.appspot.com",
-      "apiKey": "AIzaSyCBWzn03UE29Mu0xhOHMTnlCW1mVrfAjgs",
-      "authDomain": "movie-app-c80bc.firebaseapp.com",
-      "messagingSenderId": "698072277782"
-    }))), importProvidersFrom(provideAuth(() => getAuth())), importProvidersFrom(provideFirestore(() => getFirestore()))
+      "projectId": "movies-app-3bde2",
+      "appId": "1:173172836456:web:f89ffe214fc6d10db153dd",
+      "storageBucket": "movies-app-3bde2.appspot.com",
+      "apiKey": "AIzaSyA7jsH8fzGYPHq9FGr1MIrY5QHelY7dByE",
+      "authDomain": "movies-app-3bde2.firebaseapp.com",
+      "messagingSenderId": "173172836456"
+    }))), importProvidersFrom(provideAuth(() => getAuth())), importProvidersFrom(provideFirestore(() => getFirestore())), importProvidersFrom(provideFirebaseApp(() => initializeApp({"projectId":"movies-app-3bde2","appId":"1:173172836456:web:f89ffe214fc6d10db153dd","storageBucket":"movies-app-3bde2.appspot.com","apiKey":"AIzaSyA7jsH8fzGYPHq9FGr1MIrY5QHelY7dByE","authDomain":"movies-app-3bde2.firebaseapp.com","messagingSenderId":"173172836456"}))), importProvidersFrom(provideAuth(() => getAuth())), importProvidersFrom(provideFirestore(() => getFirestore()))
   ]
 };

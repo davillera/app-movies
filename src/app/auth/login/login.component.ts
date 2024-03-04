@@ -3,7 +3,10 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {PasswordModule} from "primeng/password";
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+
+import {AuthService} from "../../core/services/auth/auth.service";
+
 
 @Component({
   selector: 'app-login',
@@ -18,10 +21,15 @@ import {RouterLink} from "@angular/router";
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   public loginForm!: FormGroup;
 
   private formBuilder = inject(FormBuilder);
+  private authService = inject(AuthService);
+  private router = inject(Router)
+  // private googleAuth = inject(GoogleAuthProvider);
+  // private angularFireAuth = inject(AngularFireAuth);
+
 
   ngOnInit() {
     this.initFormLogin();
@@ -34,7 +42,16 @@ export class LoginComponent implements OnInit{
     });
   }
 
-  login() {
+  loginWithEmail() {
+    this.authService.loginWithEmail(this.loginForm.value.email, this.loginForm.value.password)
+    //TODO AÑADIR CAPTURA DE ERROR
+    this.router.navigateByUrl('/movies')
+  }
+
+  logInWithGoogle() {
+    this.authService.logInWithGoogleProvider();
+    this.router.navigateByUrl('/movies')
+    //TODO AÑADIR CAPTURA DE ERROR
 
   }
 }
