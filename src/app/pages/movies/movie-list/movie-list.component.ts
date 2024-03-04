@@ -5,10 +5,10 @@ import {DeferModule} from "primeng/defer";
 import {NgClass} from "@angular/common";
 import {MoviesService} from "../../../core/services/movies/movies.service"
 import {SharedService} from "../../../shared/services/shared.service";
-import {DocumentData} from "@angular/fire/compat/firestore";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {HeaderComponent} from "../../../shared/header/header.component";
+import MovieInterface from "../../../core/interface/movie.interface";
 
 @Component({
   selector: 'app-movie-list',
@@ -26,7 +26,7 @@ import {HeaderComponent} from "../../../shared/header/header.component";
 })
 export class MovieListComponent implements OnInit {
 
-  movies: any;
+  movies: MovieInterface[] = [];
 
   @Output() movieSelected = new EventEmitter<any>();
 
@@ -41,7 +41,7 @@ export class MovieListComponent implements OnInit {
 
   getMovies() {
     this.moviesService.getMovies().subscribe({
-        next: (data: DocumentData) => {
+        next: (data: any) => {
           this.movies = data;
         },
         error: (error: any) => {
@@ -55,6 +55,6 @@ export class MovieListComponent implements OnInit {
   onSelectMovie(movie: any) {
     this.sharedService.setSelectedMovie(movie);
     // console.log(movie)
-    this.router.navigate(['movies', movie.href]);
+    this.router.navigate(['movies', movie.title]);
   }
 }

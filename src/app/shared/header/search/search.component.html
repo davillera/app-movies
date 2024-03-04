@@ -1,6 +1,6 @@
 <main>
   <span class="p-input-icon-right">
     <i class="pi pi-search"></i>
-    <input type="text" [(ngModel)]="searchQuery" pInputText/>
+    <input type="text" [(ngModel)]="searchQuery" (input)="searchMovieByQuery()" pInputText/>
   </span>
 </main>

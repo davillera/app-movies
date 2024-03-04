@@ -10,7 +10,7 @@ export const MOVIES_ROUTES: Routes = [
     // canActivate: [AngularFireAuthGuard]
   },
   {
-    path: ':href',
+    path: ':title',
     component: MovieDetailComponent,
     // canActivate: [AngularFireAuthGuard]
   }
