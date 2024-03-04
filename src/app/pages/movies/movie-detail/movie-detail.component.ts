@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
+import {SharedService} from "../../../shared/services/shared.service";
 
 @Component({
   selector: 'app-movie-detail',
@@ -11,10 +12,17 @@ export class MovieDetailComponent implements OnInit{
 
   @Input() selectedMovie: any;
 
+  private sharedService = inject(SharedService);
+
     constructor() {
     }
 
     ngOnInit() {
-      console.log(this.selectedMovie)
+      this.getMovieSelected();
+    }
+
+    getMovieSelected() {
+      this.selectedMovie = this.sharedService.getSelectedMovie();
+      // console.log(this.selectedMovie)
     }
 }

@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {collection, collectionData, Firestore} from "@angular/fire/firestore";
+import {addDoc, collection, collectionData, Firestore} from "@angular/fire/firestore";
 
 @Injectable({
   providedIn: 'root'
@@ -13,5 +13,16 @@ export class MoviesService {
   getMovies() {
     const moviesRef = collection(this.firestore, 'movies');
     return collectionData(moviesRef)
+  }
+
+  setFavoriteMovie(href: string){
+    const moviesFavoriteRef = collection(this.firestore, 'favorites')
+    return addDoc(moviesFavoriteRef, {href})
+  }
+
+  getMovie(href: string){
+    const movieRef = collection(this.firestore, `movies/${href}`)
+    return collectionData(movieRef)
+
   }
 }
