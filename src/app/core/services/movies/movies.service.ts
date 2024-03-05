@@ -9,9 +9,6 @@ export class MoviesService {
 
   private firestore = inject(Firestore)
 
-  constructor() {
-  }
-
   getMovies() {
     const moviesRef = collection(this.firestore, 'movies');
     return collectionData(moviesRef)
@@ -24,7 +21,6 @@ export class MoviesService {
     const querySnapshot = await getDocs(q);
     if (!querySnapshot.empty) {
       const doc = querySnapshot.docs[0];
-      console.log(doc.data());
       return doc.data();
     } else {
       return null;

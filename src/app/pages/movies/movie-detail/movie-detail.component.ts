@@ -40,7 +40,6 @@ export class MovieDetailComponent implements OnInit {
     if (this.selectedMovie === null) {
       await this.router.navigate(['/404']);
     }
-    console.log(this.selectedMovie);
   }
 
 
