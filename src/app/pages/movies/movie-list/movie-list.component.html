@@ -7,8 +7,6 @@
       <section>
         <p-card (click)="onSelectMovie(movie)" [header]="movie.title">
           <ng-template pTemplate="header">
-<!--            <i [ngClass]=""></i>-->
-<!--            <i class="pi pi-heart"></i>-->
             <img [src]="movie.thumbnail">
           </ng-template>
           <ng-template pTemplate="content">

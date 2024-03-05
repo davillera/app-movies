@@ -1,6 +1,20 @@
 $error-color: #FF5733;
 
 main{
+  div{
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 10px;
+    section {
+      width: auto;
+      justify-self: center;
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+    }
+  }
   a {
     display: inline-block;
     margin-top: 20px;
@@ -18,4 +32,6 @@ main{
   h1{
     text-align: center;
   }
+
 }
+

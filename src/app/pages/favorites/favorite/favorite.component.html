@@ -3,6 +3,26 @@
 
   <h1>Mis Favoritos</h1>
 
+  <div>
+    @for (movie of moviesFavorites; track movie.title) {
+      @defer (on viewport) {
+        <section>
+          <p-card [header]="movie.movieSelectedToFavotires.title">
+            <ng-template pTemplate="header">
+              <img [src]="movie.movieSelectedToFavotires.thumbnail">
+            </ng-template>
+            <ng-template pTemplate="content">
+              <p>Genres: {{ movie.movieSelectedToFavotires.genres }}</p>
+              <p>Year: {{ movie.movieSelectedToFavotires.year }}</p>
+            </ng-template>
+          </p-card>
+        </section>
+      } @placeholder {
+        <p>Cargando...</p>
+      }
+    }
+  </div>
+
   <button (click)="logout()">Cerrar Sesión</button>
 </main>
 
