@@ -48,10 +48,11 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl('/movies')
   }
 
-  logInWithGoogle() {
-    this.authService.logInWithGoogleProvider();
-    this.router.navigateByUrl('/movies')
-    //TODO AÑADIR CAPTURA DE ERROR
-
-  }
-}
+  async logInWithGoogle() {
+    try {
+      await this.authService.signInWithGoogle();
+    } catch (error) {
+      console.error('Error logging in with Google:', error);
+      // Handle error appropriately (e.g., display a message to the user)
+    }
+  }}

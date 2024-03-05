@@ -1,15 +1,13 @@
 import {inject, Injectable} from '@angular/core';
 import {
   Auth,
-  authState,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup, signOut
 } from "@angular/fire/auth";
+import {Router} from "@angular/router";
+
 import firebase from "firebase/compat";
 import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
-import UserCredential = firebase.auth.UserCredential;
-import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -34,14 +32,16 @@ export class AuthService {
     await this.router.navigate(['/login']);
   }
 
-  getUserAuth() {
-    return authState(this.auth)
+  async signInWithGoogle(): Promise<void> {
+    // try {
+    //   const result = await signInWithPopup(this.auth, new GoogleAuthProvider());
+    //   console.log('Successfully logged in with Google:', result.user);
+    //   this.router.navigate(['/movies']);
+    // } catch (error) {
+    //   console.error('Error logging in with Google:', error);
+    //   // Handle error appropriately (e.g., display a message to the user)
+    // }
   }
 
-
-  // provider
-  logInWithGoogleProvider() {
-
-  }
 
 }
