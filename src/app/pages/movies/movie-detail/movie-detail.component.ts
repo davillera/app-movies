@@ -1,6 +1,6 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
 import {SharedService} from "../../../shared/services/shared.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MoviesService} from "../../../core/services/movies/movies.service";
 
 @Component({
@@ -19,6 +19,7 @@ export class MovieDetailComponent implements OnInit {
   private sharedService = inject(SharedService);
   private movieService = inject(MoviesService);
   private routes = inject(ActivatedRoute);
+  private router = inject(Router);
 
   constructor() {
   }
@@ -36,6 +37,9 @@ export class MovieDetailComponent implements OnInit {
 
   async getMovie() {
     this.selectedMovie = await this.movieService.getMovie(this.movieTitle);
+    if (this.selectedMovie === null) {
+      await this.router.navigate(['/404']);
+    }
     console.log(this.selectedMovie);
   }
 
