@@ -1,6 +1,14 @@
 <main>
-  <span class="p-input-icon-right">
+
+  <h1>MOVIES APP</h1>
+
+  <section>
+    <span class="p-input-icon-right">
     <i class="pi pi-search"></i>
-    <input type="text" [(ngModel)]="searchQuery" (input)="searchMovieByQuery()" pInputText/>
+    <input type="text" [(ngModel)]="searchQuery" (change)="searchMovieByQuery()" pInputText/>
   </span>
+
+    <i class="pi pi-star-fill" style="font-size: 2rem" routerLink="/favorites"></i>
+  </section>
+
 </main>

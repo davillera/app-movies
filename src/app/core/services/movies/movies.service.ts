@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {addDoc, collection, collectionData, Firestore, query, where} from "@angular/fire/firestore";
+import {addDoc, collection, collectionData, Firestore, getDoc, getDocs, query, where} from "@angular/fire/firestore";
 
 
 @Injectable({
@@ -7,30 +7,30 @@ import {addDoc, collection, collectionData, Firestore, query, where} from "@angu
 })
 export class MoviesService {
 
-  private href: string = '';
-
   private firestore = inject(Firestore)
 
-  constructor() { }
+  constructor() {
+  }
 
   getMovies() {
     const moviesRef = collection(this.firestore, 'movies');
     return collectionData(moviesRef)
   }
 
-  setFavoriteMovie(href: string){
-    const moviesFavoriteRef = collection(this.firestore, 'favorites')
-    return addDoc(moviesFavoriteRef, {href})
-  }
-  setHref(href: string) {
-    this.href = href;
+  async getMovie(movieTitle: string | null) {
+    const moviesRef = collection(this.firestore, 'movies');
+    const q = query(moviesRef, where('title', '==', movieTitle));
+
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      const doc = querySnapshot.docs[0];
+      console.log(doc.data());
+      return doc.data();
+    } else {
+      return null;
+    }
   }
 
-  getMovie(href: string){
-    const movieRef = collection(this.firestore, 'movies')
-    const q = query(movieRef, where('href', '==', href))
-    return q
 
-  }
 
 }

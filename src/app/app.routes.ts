@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import {NotFoundComponent} from "./shared/not-found/not-found.component";
 
 export const routes: Routes = [
   {
@@ -12,5 +13,9 @@ export const routes: Routes = [
   {
     path: 'favorites',
     loadChildren: () => import('./pages/favorites/favorites.routing').then(m => m.FAVORITES_ROUTES)
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
