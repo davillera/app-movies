@@ -60,8 +60,4 @@ export class RegisterComponent implements OnInit{
 
 
   }
-
-  registerWithGoogle() {
-
-  }
 }

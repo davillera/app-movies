@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
   async logInWithGoogle() {
     try {
-      await this.authService.signInWithGoogle();
+      this.authService.signInWithGoogle();
     } catch (error) {
       console.error('Error logging in with Google:', error);
       // Handle error appropriately (e.g., display a message to the user)
