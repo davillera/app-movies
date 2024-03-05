@@ -48,7 +48,7 @@ export class MovieDetailComponent implements OnInit {
 
   async addToFavorites() {
     try {
-      await this.movieService.addFavoriteMovie(this.selectedMovie.href);
+      await this.movieService.addFavoriteMovie(this.selectedMovie);
       this.messageService.add({severity: 'success', summary: 'Success', detail: 'Movie added to favorites'});
     } catch (error) {
       console.error(error);
