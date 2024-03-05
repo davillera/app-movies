@@ -14,14 +14,14 @@ export const routes: Routes = [
   {
     path: 'movies',
     loadChildren: () => import('./pages/movies/movies.routing').then(m => m.MOVIES_ROUTES),
-    // canActivate: [AuthGuard],
-    // data: { authGuardPipe: redirectUnauthorizedToLogin}
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin}
   },
   {
     path: 'favorites',
     loadChildren: () => import('./pages/favorites/favorites.routing').then(m => m.FAVORITES_ROUTES),
-    // canActivate: [AuthGuard],
-    // data: { authGuardPipe: redirectUnauthorizedToLogin}
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin}
   },
   {
     path: '**',
