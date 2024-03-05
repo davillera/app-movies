@@ -1,5 +1,5 @@
 <div class="movie-detail">
-
+  <p-toast></p-toast>
   @if (selectedMovie){
     <h2>{{ selectedMovie.title }}</h2>
     <div class="movie-info">
@@ -18,6 +18,7 @@
           <li><strong>Protagonistas:</strong> {{ selectedMovie.cast }}</li>
         </ul>
       </div>
+      <button (click)="addToFavorites()">Agregar a Favoritos</button>
     </div>
   } @else {
     <h2>Cargando...</h2>

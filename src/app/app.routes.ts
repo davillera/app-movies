@@ -1,6 +1,11 @@
 import { Routes } from '@angular/router';
 import {NotFoundComponent} from "./shared/not-found/not-found.component";
+import {redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard'
+import {AuthGuard} from "@angular/fire/auth-guard";
 
+
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
 export const routes: Routes = [
   {
     path: '',
@@ -8,11 +13,15 @@ export const routes: Routes = [
   },
   {
     path: 'movies',
-    loadChildren: () => import('./pages/movies/movies.routing').then(m => m.MOVIES_ROUTES)
+    loadChildren: () => import('./pages/movies/movies.routing').then(m => m.MOVIES_ROUTES),
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin}
   },
   {
     path: 'favorites',
-    loadChildren: () => import('./pages/favorites/favorites.routing').then(m => m.FAVORITES_ROUTES)
+    loadChildren: () => import('./pages/favorites/favorites.routing').then(m => m.FAVORITES_ROUTES),
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin}
   },
   {
     path: '**',

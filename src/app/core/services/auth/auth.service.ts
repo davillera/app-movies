@@ -4,11 +4,12 @@ import {
   authState,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup
+  signInWithPopup, signOut
 } from "@angular/fire/auth";
 import firebase from "firebase/compat";
 import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 import UserCredential = firebase.auth.UserCredential;
+import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -17,8 +18,7 @@ import UserCredential = firebase.auth.UserCredential;
 export class AuthService {
 
   private auth: Auth = inject(Auth)
-
-  readonly authStatus$ = authState(this.auth)
+  private router = inject(Router)
 
 
   loginWithEmail(email: string, password: string) {
@@ -29,15 +29,19 @@ export class AuthService {
     return createUserWithEmailAndPassword(this.auth, email, password)
   }
 
-  logout() {
+  async logOut(): Promise<void> {
+    await this.auth.signOut();
+    await this.router.navigate(['/login']);
+  }
 
+  getUserAuth() {
+    return authState(this.auth)
   }
 
 
   // provider
   logInWithGoogleProvider() {
-    // const provider = new GoogleAuthProvider()
-    // return signInWithPopup(this.auth, provider)
+
   }
 
 }

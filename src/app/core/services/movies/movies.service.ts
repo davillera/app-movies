@@ -1,5 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import {addDoc, collection, collectionData, Firestore, getDoc, getDocs, query, where} from "@angular/fire/firestore";
+import {Auth} from "@angular/fire/auth";
 
 
 @Injectable({
@@ -8,6 +9,7 @@ import {addDoc, collection, collectionData, Firestore, getDoc, getDocs, query, w
 export class MoviesService {
 
   private firestore = inject(Firestore)
+  private auth = inject(Auth)
 
   getMovies() {
     const moviesRef = collection(this.firestore, 'movies');
@@ -27,6 +29,35 @@ export class MoviesService {
     }
   }
 
+  async addFavoriteMovie(href: string): Promise<void> {
+    const user = this.auth.currentUser;
+    if (!user) {
+      throw new Error('No user logged in');
+    }
 
+    const favoritesRef = collection(this.firestore, `users/${user.uid}/favorites`);
+    const q = query(favoritesRef, where('movieId', '==', href));
+
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      // La película ya está en favoritos
+      throw new Error('Movie is already in favorites'); // Lanza un error específico
+    }
+
+    await addDoc(favoritesRef, {
+      href,
+      user: user.uid,
+    });
+  }
+
+  getFavorites() {
+    const user = this.auth.currentUser;
+    if (!user) {
+      throw new Error('No user logged in');
+    }
+
+    const favoritesRef = collection(this.firestore, `users/${user.uid}/favorites`);
+    return collectionData(favoritesRef);
+  }
 
 }
