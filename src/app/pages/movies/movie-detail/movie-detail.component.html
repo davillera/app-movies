@@ -1,20 +1,25 @@
 <div class="movie-detail">
-  <h2>{{ selectedMovie.title }}</h2>
-  <div class="movie-info">
-    <div class="summary">
-      <h3>Resumen:</h3>
-      <p>{{ selectedMovie.extract }}</p>
+
+  @if (selectedMovie){
+    <h2>{{ selectedMovie.title }}</h2>
+    <div class="movie-info">
+      <div class="summary">
+        <h3>Resumen:</h3>
+        <p>{{ selectedMovie.extract }}</p>
+      </div>
+      <div class="image">
+        <img [src]="selectedMovie.thumbnail" alt="{{ selectedMovie.title }}">
+      </div>
+      <div class="details">
+        <h3>Detalles:</h3>
+        <ul>
+          <li><strong>Género(s):</strong> {{ selectedMovie.genres }}</li>
+          <li><strong>Año:</strong> {{ selectedMovie.year }}</li>
+          <li><strong>Protagonistas:</strong> {{ selectedMovie.cast }}</li>
+        </ul>
+      </div>
     </div>
-    <div class="image">
-      <img [src]="selectedMovie.thumbnail" alt="{{ selectedMovie.title }}">
-    </div>
-    <div class="details">
-      <h3>Detalles:</h3>
-      <ul>
-        <li><strong>Género(s):</strong> {{ selectedMovie.genres }}</li>
-        <li><strong>Año:</strong> {{ selectedMovie.year }}</li>
-        <li><strong>Protagonistas:</strong> {{ selectedMovie.cast }}</li>
-      </ul>
-    </div>
-  </div>
+  } @else {
+    <h2>Cargando...</h2>
+  }
 </div>
