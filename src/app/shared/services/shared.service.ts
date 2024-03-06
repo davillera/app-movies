@@ -17,12 +17,12 @@ export class SharedService {
     this.selectedMovie = movie;
   }
 
-  getSelectedMovie() {
-    return this.selectedMovie;
+  setSearchQuery(query: string) {
+      this.searchQuerySubject.next(query);
   }
 
-  updateSearchQuery(query: string) {
-    this.searchQuerySubject.next(query);
+  getSearchQueryObservable() {
+    return this.searchQuerySubject.asObservable();
   }
 
 

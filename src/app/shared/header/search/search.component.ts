@@ -1,8 +1,8 @@
 import {Component, inject} from '@angular/core';
 import {InputTextModule} from "primeng/inputtext";
 import {FormsModule} from "@angular/forms";
-import algoliasearch from 'algoliasearch/lite';
 import {RouterLink} from "@angular/router";
+import {SharedService} from "../../services/shared.service";
 
 
 @Component({
@@ -17,17 +17,12 @@ import {RouterLink} from "@angular/router";
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
+
+  private sharedService = inject(SharedService);
+
   searchQuery: any;
 
-
-
-
-
-  selectSuggestion(suggestion: string) {
-
-  }
-
-  searchMovieByQuery() {
-
+  onSearchChange() {
+    this.sharedService.setSearchQuery(this.searchQuery);
   }
 }

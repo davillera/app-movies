@@ -1,14 +1,17 @@
 import {Component, inject, Input, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {MoviesService} from "../../../core/services/movies/movies.service";
 import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
+import {ButtonModule} from "primeng/button";
 
 @Component({
   selector: 'app-movie-detail',
   standalone: true,
   imports: [
-    ToastModule
+    ToastModule,
+    ButtonModule,
+    RouterLink
   ],
   templateUrl: './movie-detail.component.html',
   styleUrl: './movie-detail.component.scss'
@@ -46,7 +49,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
 
-  async addToFavorites() {
+  async addFavorites() {
     try {
       await this.movieService.addFavoriteMovie(this.selectedMovie);
       this.messageService.add({severity: 'success', summary: 'Success', detail: 'Movie added to favorites'});

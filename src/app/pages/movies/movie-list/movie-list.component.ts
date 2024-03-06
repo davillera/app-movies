@@ -9,6 +9,8 @@ import {MessageService} from "primeng/api";
 import {ToastModule} from "primeng/toast";
 import {HeaderComponent} from "../../../shared/header/header.component";
 import MovieInterface from "../../../core/interface/movie.interface";
+import {environment} from "../../../../env/environment";
+import algoliasearch from "algoliasearch/lite";
 
 @Component({
   selector: 'app-movie-list',
@@ -26,17 +28,32 @@ import MovieInterface from "../../../core/interface/movie.interface";
 })
 export class MovieListComponent implements OnInit {
 
-  movies: MovieInterface[] = [];
+  movies: any
 
-  @Output() movieSelected = new EventEmitter<any>();
+  searchQuery: string = ""
 
   private router = inject(Router);
   private moviesService = inject(MoviesService);
   private messageService = inject(MessageService);
   private sharedService = inject(SharedService);
 
+  private client = algoliasearch(environment.algolia.appId, environment.algolia.apiKey)
+  private index = this.client.initIndex(environment.algolia.indexName)
+
+  constructor() {
+
+  }
+
   ngOnInit() {
-    this.getMovies()
+    this.getMovies();
+    this.searchMovie();
+  }
+
+  searchMovie(){
+    this.sharedService.getSearchQueryObservable().subscribe(query => {
+      this.searchQuery = query;
+      this.searchMovieByAlgolia()
+    });
   }
 
   getMovies() {
@@ -56,5 +73,12 @@ export class MovieListComponent implements OnInit {
     this.sharedService.setSelectedMovie(movie);
     // console.log(movie)
     this.router.navigate(['movies', movie.title]);
+  }
+
+  searchMovieByAlgolia(){
+    this.index.search(this.searchQuery).then(({hits}) =>{
+      console.log(hits)
+      this.movies = hits
+    })
   }
 }

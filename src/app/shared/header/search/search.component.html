@@ -5,10 +5,10 @@
   <section>
     <span class="p-input-icon-right">
     <i class="pi pi-search"></i>
-    <input type="text" [(ngModel)]="searchQuery" (change)="searchMovieByQuery()" pInputText/>
+    <input type="text" [(ngModel)]="searchQuery" (input)="onSearchChange()" pInputText/>
   </span>
 
-    <i class="pi pi-star-fill" style="font-size: 2rem" routerLink="/favorites"></i>
+    <i class="pi pi-user" style="font-size: 2rem" routerLink="/favorites"></i>
   </section>
 
 </main>
