@@ -1,7 +1,7 @@
 <main>
-  <a href="/movies">Back</a>
-
+  <p-toast></p-toast>
   <h1>Mis Favoritos</h1>
+  <a href="/movies">Back</a>
 
   <div>
     @for (movie of moviesFavorites; track movie.title) {
@@ -23,6 +23,6 @@
     }
   </div>
 
-  <button (click)="logout()">Cerrar Sesión</button>
+  <p-button (click)="logout()">Cerrar Sesión</p-button>
 </main>
 

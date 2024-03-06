@@ -4,13 +4,17 @@ import {AuthService} from "../../../core/services/auth/auth.service";
 import {MoviesService} from "../../../core/services/movies/movies.service";
 import {MessageService} from "primeng/api";
 import {CardModule} from "primeng/card";
+import {ToastModule} from "primeng/toast";
+import {ButtonModule} from "primeng/button";
 
 @Component({
   selector: 'app-favorite',
   standalone: true,
   imports: [
     SearchComponent,
-    CardModule
+    CardModule,
+    ToastModule,
+    ButtonModule
   ],
   templateUrl: './favorite.component.html',
   styleUrl: './favorite.component.scss'
